@@ -5,9 +5,11 @@ open class Cart<T: CartProduct> {
 
     private(set) var items = [Item]()
     
-//    public var totalPrice: Double {
-//        return 0
-//    }
+    public var totalPrice: Double {
+        return items
+            .map({ $0.product.price * Double($0.quantity) })
+            .reduce(0, +)
+    }
     
     public func add(_ product: T) {
         for (index, item) in items.enumerated() {
@@ -89,14 +91,14 @@ final class CartTests: XCTestCase {
         XCTAssertEqual(cart.items[0].quantity, 2)
     }
     
-//    func test_totalPrice_sumsTheMultiplicationOfProductByQuantity() {
-//        let cart = makeSUT()
-//        cart.add(.meat)
-//        cart.add(.meat)
-//        cart.add(.meat)
-//
-//        XCTAssertEqual(cart.totalPrice, 30)
-//    }
+    func test_totalPrice_sumsTheMultiplicationOfProductByQuantity() {
+        let cart = makeSUT()
+        cart.add(.meat)
+        cart.add(.meat)
+        cart.add(.pizza)
+
+        XCTAssertEqual(cart.totalPrice, 28)
+    }
     
     // MARK: Helpers
     
