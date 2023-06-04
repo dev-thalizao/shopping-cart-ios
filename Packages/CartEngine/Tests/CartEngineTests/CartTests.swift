@@ -15,6 +15,10 @@ open class Cart {
         
         items.append(.init(product: product, quantity: 1))
     }
+    
+    public func remove(_ product: String) {
+        items.removeAll(where: { $0.product == product })
+    }
 }
 
 extension Cart {
@@ -44,5 +48,14 @@ final class CartTests: XCTestCase {
         cart.add("pizza")
         XCTAssertEqual(cart.items.count, 1)
         XCTAssertEqual(cart.items[0].quantity, 2)
+    }
+    
+    func test_remove_withOnlyOneAsQuantity_removeTheItem() {
+        let cart = Cart()
+        cart.add("meat")
+        
+        cart.remove("meat")
+        
+        XCTAssertTrue(cart.items.isEmpty)
     }
 }
