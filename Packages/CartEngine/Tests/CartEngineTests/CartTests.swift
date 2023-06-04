@@ -3,12 +3,10 @@ import XCTest
 
 open class Cart<T: CartProduct> {
 
-    private(set) var items = [Item]()
+    private(set) var items = [CartItem<T>]()
     
     public var totalPrice: Double {
-        return items
-            .map({ $0.product.price * Double($0.quantity) })
-            .reduce(0, +)
+        return items.map(\.price).reduce(0, +)
     }
     
     public func add(_ product: T) {
@@ -41,11 +39,12 @@ public protocol CartProduct: Equatable {
     var price: Double { get }
 }
 
-extension Cart {
+public struct CartItem<T: CartProduct> {
+    public let product: T
+    public let quantity: UInt
     
-    struct Item {
-        let product: T
-        let quantity: UInt
+    public var price: Double {
+        return product.price * Double(quantity)
     }
 }
 
