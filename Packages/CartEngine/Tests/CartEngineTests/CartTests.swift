@@ -9,6 +9,10 @@ open class Cart<T: CartProduct> {
         return items.map(\.price).reduce(0, +)
     }
     
+    public var totalItems: UInt {
+        return items.map(\.quantity).reduce(0, +)
+    }
+    
     public func add(_ product: T) {
         for (index, item) in items.enumerated() {
             if item.product == product {
@@ -97,6 +101,16 @@ final class CartTests: XCTestCase {
         cart.add(.pizza)
 
         XCTAssertEqual(cart.totalPrice, 28)
+    }
+    
+    func test_totalItems_sumsAllTheQuantities() {
+        let cart = makeSUT()
+        cart.add(.meat)
+        cart.add(.meat)
+        cart.add(.pizza)
+
+        XCTAssertEqual(cart.items.count, 2)
+        XCTAssertEqual(cart.totalItems, 3)
     }
     
     // MARK: Helpers
