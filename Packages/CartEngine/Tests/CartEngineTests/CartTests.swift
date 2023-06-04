@@ -17,7 +17,17 @@ open class Cart {
     }
     
     public func remove(_ product: String) {
-        items.removeAll(where: { $0.product == product })
+        for (index, item) in items.enumerated() {
+            if item.product == product {
+                let newQuantity = max(0, item.quantity - 1)
+                if newQuantity >= 1 {
+                    items[index] = .init(product: product, quantity: newQuantity)
+                } else {
+                    items.remove(at: index)
+                }
+                return
+            }
+        }
     }
 }
 
@@ -57,5 +67,17 @@ final class CartTests: XCTestCase {
         cart.remove("meat")
         
         XCTAssertTrue(cart.items.isEmpty)
+    }
+    
+    func test_remove_withMoreThanOneQuantity_decreaseTheQuantity() {
+        let cart = Cart()
+        cart.add("meat")
+        cart.add("meat")
+        cart.add("meat")
+        
+        cart.remove("meat")
+        
+        XCTAssertEqual(cart.items.count, 1)
+        XCTAssertEqual(cart.items[0].quantity, 2)
     }
 }
