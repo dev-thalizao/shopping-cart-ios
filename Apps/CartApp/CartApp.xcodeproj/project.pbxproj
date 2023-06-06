@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		122F13BC2A2F928E00062BA4 /* Marketplace in Frameworks */ = {isa = PBXBuildFile; productRef = 122F13BB2A2F928E00062BA4 /* Marketplace */; };
 		129EDB512A2CF910002913B2 /* CartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129EDB502A2CF910002913B2 /* CartApp.swift */; };
 		129EDB532A2CF910002913B2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129EDB522A2CF910002913B2 /* ContentView.swift */; };
 		129EDB552A2CF912002913B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 129EDB542A2CF912002913B2 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				122F13BC2A2F928E00062BA4 /* Marketplace in Frameworks */,
 				129EDB7C2A2CF937002913B2 /* CartEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +157,7 @@
 			name = CartApp;
 			packageProductDependencies = (
 				129EDB7B2A2CF937002913B2 /* CartEngine */,
+				122F13BB2A2F928E00062BA4 /* Marketplace */,
 			);
 			productName = CartApp;
 			productReference = 129EDB4D2A2CF910002913B2 /* CartApp.app */;
@@ -592,6 +595,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		122F13BB2A2F928E00062BA4 /* Marketplace */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Marketplace;
+		};
 		129EDB7B2A2CF937002913B2 /* CartEngine */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CartEngine;
