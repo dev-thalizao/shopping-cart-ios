@@ -1,3 +1,9 @@
+//
+//  Cart.swift
+//
+//
+//  Created by Thales Frigo on 04/06/23.
+//
 
 import Foundation
 
@@ -46,10 +52,6 @@ open class Cart<T: CartProduct> {
             }
         }
     }
-}
-
-public protocol CartProduct: Equatable {
-    var price: Double { get }
 }
 
 public struct CartItem<T: CartProduct>: Equatable {
