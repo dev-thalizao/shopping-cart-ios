@@ -10,6 +10,8 @@ import XCTest
 
 final class ProductsMapper {
     
+    private struct Root: Decodable {}
+    
     private init() {}
     
     enum Error: Swift.Error {
@@ -17,9 +19,14 @@ final class ProductsMapper {
     }
     
     static func map(_ data: Data, from response: HTTPURLResponse) throws -> [Product] {
-        guard response.statusCode == 200 else {
+                
+        guard
+            response.statusCode == 200,
+            let _ = try? JSONDecoder().decode(Root.self, from: data)
+        else {
             throw Error.invalidData
         }
+        
         return []
     }
 }
@@ -35,6 +42,14 @@ final class ProductsMapperTests: XCTestCase {
                 try ProductsMapper.map(json, from: response)
             )
         }
+    }
+    
+    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() throws {
+        let invalidJSON = Data("invalid json".utf8)
+        let response = HTTPURLResponse(statusCode: 200)
+        XCTAssertThrowsError(
+            try ProductsMapper.map(invalidJSON, from: response)
+        )
     }
 }
 
