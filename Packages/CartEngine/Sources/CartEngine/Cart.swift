@@ -54,11 +54,4 @@ open class Cart<T: CartProduct> {
     }
 }
 
-public struct CartItem<T: CartProduct>: Equatable {
-    public let product: T
-    public let quantity: UInt
-    
-    public var price: Double {
-        return product.price * Double(quantity)
-    }
-}
+
