@@ -14,15 +14,25 @@ struct ProductsView: View {
     ]
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns) {
-                
-                ForEach((0..<10)) { _ in
-                    ProductView()
+        NavigationView {
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    ForEach((0..<10), id: \.self) { _ in
+                        ProductView()
+                    }
                 }
-            }
-            .padding(16)
-        }.background(Color.gray.opacity(0.1))
+                .padding(16)
+            }.background(Color.gray.opacity(0.1))
+                .navigationTitle("Produtos")
+                .navigationBarHidden(false)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        //Image(systemName: "checkmark.seal")
+                        Button("Ver promoções") {}
+                    }
+                }
+                
+        }
         
     }
 }
@@ -124,7 +134,7 @@ extension Product {
 
 struct ProductsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductView()
+        ProductsView()
     }
 }
 
