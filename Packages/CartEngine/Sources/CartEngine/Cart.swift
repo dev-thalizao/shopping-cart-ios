@@ -7,24 +7,34 @@
 
 import Foundation
 
-public typealias OnCartChange<T: CartProduct> = (Cart<T>) -> Void
-
+/// A class that holds all the cart logic
 open class Cart<T: CartProduct> {
 
+    /// The total price of the whole cart
     public var totalPrice: Double {
         return items.map(\.price).reduce(0, +)
     }
     
+    /// The count of all items regarding the quantity
     public var totalItems: UInt {
         return items.map(\.quantity).reduce(0, +)
     }
     
-    public var onCartChange: OnCartChange<T>?
+    /// The closure that communicate the changes
+    public var onCartChange: ((Cart<T>) -> Void)?
     
+    /// The list of all items added to the cart
     public private(set) var items = [CartItem<T>]()
     
+    /// Public init
     public init() {}
     
+    /**
+     * Adds a product to the cart
+     * If the product already exists, increment the quantity.
+     *
+     * - parameter product: The product to add.
+     */
     public func add(_ product: T) {
         for (index, item) in items.enumerated() {
             if item.product == product {
@@ -38,6 +48,12 @@ open class Cart<T: CartProduct> {
         onCartChange?(self)
     }
     
+    /**
+     * Removes a product from the cart
+     * If the product has quantity greater than one, decrease the quantity. Otherwise, the product is removed from the cart.
+     *
+     * - parameter product: The product to remove.
+     */
     public func remove(_ product: T) {
         for (index, item) in items.enumerated() {
             if item.product == product {
@@ -53,5 +69,3 @@ open class Cart<T: CartProduct> {
         }
     }
 }
-
-
