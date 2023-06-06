@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Product {
+struct Product: Equatable {
     let name: String
     let image: URL
     let onSale: Bool
@@ -20,7 +20,7 @@ struct Product {
 
 extension Product {
     
-    struct Size {
+    struct Size: Equatable {
         let available: Bool
         let size: String
         let sku: String

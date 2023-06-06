@@ -51,6 +51,12 @@ final class ProductsMapperTests: XCTestCase {
             try ProductsMapper.map(invalidJSON, from: response)
         )
     }
+    
+    func test_map_deliversNoItemsOn200HTTPResponseWithEmptyJSON() throws {
+        let emptyJSON = emptyJSON()
+        let response = HTTPURLResponse(statusCode: 200)
+        XCTAssertEqual(try ProductsMapper.map(emptyJSON, from: response), [])
+    }
 }
 
 // MARK: - Helpers
