@@ -38,7 +38,7 @@ public struct ProductsView: View {
                     }
                 }
         }.task {
-            try? await viewModel.loadProducts()
+            await viewModel.loadProducts()
         }
     }
 }

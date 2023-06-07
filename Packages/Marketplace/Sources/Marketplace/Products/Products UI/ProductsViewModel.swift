@@ -14,6 +14,7 @@ public protocol ProductsLoader {
  public class ProductsViewModel: ObservableObject {
     
     @Published private(set) var products = [Product]()
+    @Published private(set) var state = State.initial
     
     private let loader: ProductsLoader
     
@@ -21,7 +22,24 @@ public protocol ProductsLoader {
         self.loader = loader
     }
     
-     @MainActor func loadProducts() async throws {
-         self.products = try await loader.load()
+     @MainActor func loadProducts() async {
+         self.state = .loading
+         
+         do {
+             let products = try await loader.load()
+             self.state = .success(products)
+         } catch {
+             self.state = .failure
+         }
+    }
+}
+
+extension ProductsViewModel {
+    
+    enum State: Equatable {
+        case initial
+        case loading
+        case success([Product])
+        case failure
     }
 }

@@ -14,21 +14,38 @@ final class ProductsViewModelTests: XCTestCase {
     func test_init_doesNotTriggerAnyRequest() throws {
         let (sut, _) = makeSUT()
         XCTAssertEqual(sut.products, [])
+        XCTAssertEqual(sut.state, .initial)
     }
     
     func test_loadProducts_returnProductsWithSuccessRequest() async throws {
         let (sut, loader) = makeSUT()
         loader.completion = { .success([makeDressProduct()]) }
 
-        let spy = TestObserver(sut.$products)
+        let spy = TestObserver(sut.$state)
         
-        try await sut.loadProducts()
+        await sut.loadProducts()
 
-        XCTAssertEqual(spy.values, [[makeDressProduct()]])
+        XCTAssertEqual(spy.values, [
+            .loading,
+            .success([makeDressProduct()])
+        ])
+    }
+    
+    func test_loadProducts_returnErrorWithFailedRequest() async throws {
+        let (sut, loader) = makeSUT()
+        loader.completion = { .failure(AnyError()) }
+
+        let spy = TestObserver(sut.$state)
+
+        await sut.loadProducts()
+
+        XCTAssertEqual(spy.values, [.loading, .failure])
     }
 }
 
 // MARK: - Helpers
+
+struct AnyError: Error {}
 
 private func makeSUT() -> (ProductsViewModel, StubProductsLoader) {
     let loader = StubProductsLoader()
