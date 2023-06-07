@@ -7,18 +7,24 @@
 
 import SwiftUI
 
-struct ProductsView: View {
+public struct ProductsView: View {
+    
+    @ObservedObject private var viewModel: ProductsViewModel
     
     var columns: [GridItem] = [
         GridItem(.flexible()),
     ]
     
-    var body: some View {
+    public init(viewModel: ObservedObject<ProductsViewModel>) {
+        self._viewModel = viewModel
+    }
+    
+    public var body: some View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    ForEach((0..<10), id: \.self) { _ in
-                        ProductView()
+                    ForEach(viewModel.products, id: \.name) { product in
+                        ProductView(product: product)
                     }
                 }
                 .padding(16)
@@ -31,30 +37,19 @@ struct ProductsView: View {
                         Button("Ver promoções") {}
                     }
                 }
-                
+        }.task {
+            try? await viewModel.loadProducts()
         }
-        
     }
 }
 
 struct ProductView: View {
     
-    let product = Product(
-        name: "VESTIDO TRANSPASSE BOW",
-        image: URL(string: "https://d3l7rqep7l31az.cloudfront.net/images/products/20002605_615_catalog_1.jpg?1460136912")!,
-        onSale: false,
-        regularPrice: "R$ 199,90",
-        actualPrice: "R$ 199,90",
-        discountPercentage: "25%",
-        installments: "3x R$ 66,63",
-        sizes: [
-            Product.Size(available: false, size: "PP", sku: "5807_343_0_PP"),
-            Product.Size(available: true, size: "P", sku: "5807_343_0_P"),
-            Product.Size(available: true, size: "M", sku: "5807_343_0_M"),
-            Product.Size(available: true, size: "G", sku: "5807_343_0_G"),
-            Product.Size(available: false, size: "GG", sku: "5807_343_0_GG"),
-        ]
-    )
+    private let product: Product
+    
+    internal init(product: Product) {
+        self.product = product
+    }
     
     var body: some View {
         VStack() {
@@ -67,7 +62,7 @@ struct ProductView: View {
                     case .success(let image):
                         image
                             .resizable()
-                            .scaledToFill()
+                            .scaledToFit()
                  
                     case .failure(_):
                         Image(systemName: "exclamationmark.icloud")
@@ -77,7 +72,7 @@ struct ProductView: View {
                     @unknown default:
                         ProgressView()
                     }
-                }.frame(width: 300, height: 500)
+                }.frame(height: 300)
                 
                 if product.onSale {
                     Text("(\(product.discountPercentage) OFF)")
@@ -132,10 +127,10 @@ extension Product {
 
 #if DEBUG
 
-struct ProductsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductsView()
-    }
-}
+//struct ProductsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProductsView()
+//    }
+//}
 
 #endif

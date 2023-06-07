@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ProductsMapper {
+public final class ProductsMapper {
     
     private init() {}
     
@@ -15,7 +15,7 @@ final class ProductsMapper {
         case invalidData
     }
     
-    static func map(_ data: Data, from response: HTTPURLResponse) throws -> [Product] {
+    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [Product] {
                 
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase

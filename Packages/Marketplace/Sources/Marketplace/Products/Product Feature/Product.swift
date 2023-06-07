@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Product: Equatable {
+public struct Product: Equatable {
     let name: String
     let image: URL
     let onSale: Bool
