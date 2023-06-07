@@ -13,7 +13,6 @@ final class ProductsViewModelTests: XCTestCase {
     
     func test_init_doesNotTriggerAnyRequest() throws {
         let (sut, _) = makeSUT()
-        XCTAssertEqual(sut.products, [])
         XCTAssertEqual(sut.state, .initial)
         XCTAssertEqual(sut.filter, .all)
     }

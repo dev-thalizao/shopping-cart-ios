@@ -13,7 +13,6 @@ public protocol ProductsLoader {
 
 public class ProductsViewModel: ObservableObject {
     
-    @Published private(set) var products = [Product]()
     @Published private(set) var state = State.initial
     @Published private(set) var filter = Filter.all
     
