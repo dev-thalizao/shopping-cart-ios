@@ -83,17 +83,23 @@ final class ProductsViewModelTests: XCTestCase {
             .success([makeDressProduct(onSale: true), makeDressProduct(onSale: false)]),
         ])
     }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (ProductsViewModel, StubProductsLoader) {
+        let loader = StubProductsLoader()
+        let viewModel = ProductsViewModel(loader: loader)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(viewModel, file: file, line: line)
+        
+        return (viewModel, loader)
+    }
 }
 
-// MARK: - Helpers
-
-struct AnyError: Error {}
-
-private func makeSUT() -> (ProductsViewModel, StubProductsLoader) {
-    let loader = StubProductsLoader()
-    let viewModel = ProductsViewModel(loader: loader)
-    return (viewModel, loader)
-}
+// MARK: - Mocks
 
 private class StubProductsLoader: ProductsLoader {
     

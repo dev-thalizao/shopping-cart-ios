@@ -97,6 +97,14 @@ final class CartViewModelTests: XCTestCase {
         ])
     }
     
+    func test_br_formatter() {
+        let formatter = NumberFormatter.br
+        XCTAssertEqual(formatter.number(from: "R$ 199,90")?.doubleValue, 199.90)
+        XCTAssertEqual(formatter.string(from: NSNumber(value: 1999.90)), "R$ 1.999,90")
+    }
+    
+    // MARK: - Helpers
+    
     private func makeSUT(
         file: StaticString = #filePath,
         line: UInt = #line
@@ -104,15 +112,5 @@ final class CartViewModelTests: XCTestCase {
         let sut = CartViewModel()
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
-    }
-    
-    func test_formatter() {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "BRL"
-        formatter.positivePrefix = "R$ "
-        
-        XCTAssertEqual(formatter.number(from: "R$ 199,90")?.doubleValue, 199.90)
-        XCTAssertEqual(formatter.string(from: NSNumber(value: 1999.90)), "R$ 1.999,90")
     }
 }

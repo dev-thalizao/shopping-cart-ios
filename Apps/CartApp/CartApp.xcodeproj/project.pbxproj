@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		122F13BC2A2F928E00062BA4 /* Marketplace in Frameworks */ = {isa = PBXBuildFile; productRef = 122F13BB2A2F928E00062BA4 /* Marketplace */; };
+		127295D12A3274E900FF2C06 /* NetworkEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 127295D02A3274E900FF2C06 /* NetworkEngine */; };
 		129EDB512A2CF910002913B2 /* CartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129EDB502A2CF910002913B2 /* CartApp.swift */; };
 		129EDB532A2CF910002913B2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129EDB522A2CF910002913B2 /* ContentView.swift */; };
 		129EDB552A2CF912002913B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 129EDB542A2CF912002913B2 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 			files = (
 				122F13BC2A2F928E00062BA4 /* Marketplace in Frameworks */,
 				129EDB7C2A2CF937002913B2 /* CartEngine in Frameworks */,
+				127295D12A3274E900FF2C06 /* NetworkEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +170,7 @@
 			packageProductDependencies = (
 				129EDB7B2A2CF937002913B2 /* CartEngine */,
 				122F13BB2A2F928E00062BA4 /* Marketplace */,
+				127295D02A3274E900FF2C06 /* NetworkEngine */,
 			);
 			productName = CartApp;
 			productReference = 129EDB4D2A2CF910002913B2 /* CartApp.app */;
@@ -608,6 +611,10 @@
 		122F13BB2A2F928E00062BA4 /* Marketplace */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Marketplace;
+		};
+		127295D02A3274E900FF2C06 /* NetworkEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkEngine;
 		};
 		129EDB7B2A2CF937002913B2 /* CartEngine */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -28,6 +28,6 @@ let package = Package(
             dependencies: ["CartEngine"]),
         .testTarget(
             name: "MarketplaceTests",
-            dependencies: ["Marketplace"]),
+            dependencies: ["Marketplace", "NetworkEngine"]),
     ]
 )
