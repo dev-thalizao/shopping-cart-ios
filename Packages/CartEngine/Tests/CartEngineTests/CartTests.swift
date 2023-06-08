@@ -62,6 +62,21 @@ final class CartTests: XCTestCase {
         XCTAssertEqual(cart.totalItems, 3)
     }
     
+    func test_clear_removeAllItems() {
+        let cart = makeSUT()
+        cart.add(.meat)
+        cart.add(.meat)
+        cart.add(.pizza)
+
+        XCTAssertEqual(cart.items.count, 2)
+        XCTAssertEqual(cart.totalItems, 3)
+        
+        cart.clear()
+        
+        XCTAssertEqual(cart.items.count, 0)
+        XCTAssertEqual(cart.totalItems, 0)
+    }
+    
     func test_delegate_notifiesAllChangesInItems() {
         let cart = makeSUT()
         let spy = SpyFoodChanges()
@@ -72,6 +87,7 @@ final class CartTests: XCTestCase {
         cart.add(.meat)
         cart.remove(.meat)
         cart.remove(.pizza)
+        cart.clear()
         
         XCTAssertEqual(spy.items, [
             [.init(product: .pizza, quantity: 1)],
@@ -79,6 +95,7 @@ final class CartTests: XCTestCase {
             [.init(product: .pizza, quantity: 2), .init(product: .meat, quantity: 1)],
             [.init(product: .pizza, quantity: 2)],
             [.init(product: .pizza, quantity: 1)],
+            [],
         ])
     }
     
@@ -88,6 +105,8 @@ final class CartTests: XCTestCase {
         return Cart<Food>()
     }
 }
+
+// MARK: - Mocks
 
  private enum Food: CartProduct {
     case pizza

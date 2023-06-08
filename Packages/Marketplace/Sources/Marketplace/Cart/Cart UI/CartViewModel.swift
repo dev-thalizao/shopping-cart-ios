@@ -40,4 +40,8 @@ public final class CartViewModel: ObservableObject {
     public func select(_ product: Product, with size: Product.AvailableSize) {
         engine.add(.init(product: product, size: size))
     }
+    
+    func clear() {
+        engine.clear()
+    }
 }

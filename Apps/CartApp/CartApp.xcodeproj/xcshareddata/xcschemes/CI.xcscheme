@@ -30,8 +30,9 @@
       codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
+            skipped = "YES"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "129EDB5C2A2CF912002913B2"
@@ -41,14 +42,49 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "129EDB662A2CF912002913B2"
                BuildableName = "CartAppUITests.xctest"
                BlueprintName = "CartAppUITests"
                ReferencedContainer = "container:CartApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CartEngineTests"
+               BuildableName = "CartEngineTests"
+               BlueprintName = "CartEngineTests"
+               ReferencedContainer = "container:../../Packages/CartEngine">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "MarketplaceTests"
+               BuildableName = "MarketplaceTests"
+               BlueprintName = "MarketplaceTests"
+               ReferencedContainer = "container:../../Packages/Marketplace">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "NetworkEngineTests"
+               BuildableName = "NetworkEngineTests"
+               BlueprintName = "NetworkEngineTests"
+               ReferencedContainer = "container:../../Packages/NetworkEngine">
             </BuildableReference>
          </TestableReference>
       </Testables>

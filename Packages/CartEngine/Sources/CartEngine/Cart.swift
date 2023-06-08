@@ -68,4 +68,12 @@ open class Cart<T: CartProduct> {
             }
         }
     }
+    
+    /**
+     * Removes all the products from the cart
+     */
+    public func clear() {
+        items.removeAll()
+        onCartChange?(self)
+    }
 }

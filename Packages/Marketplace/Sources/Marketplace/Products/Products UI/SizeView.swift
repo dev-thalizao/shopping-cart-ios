@@ -22,15 +22,16 @@ struct SizeView: View {
             onSelection(size)
         }) {
             Text(size.size)
-                .font(.system(size: 17))
                 .fontWeight(.bold)
                 .foregroundColor(.black)
-                .padding()
+//                .padding()
+                .frame(width: 40, height: 40)
                 .background(
                     Circle()
                         .fill(Color.white)
                         .shadow(color: .gray, radius: 2, x: 0, y: 2)
-            )
+                ).padding(.bottom, 8)
+                
         }
     }
 }

@@ -83,17 +83,23 @@ final class ProductsViewModelTests: XCTestCase {
             .success([makeDressProduct(onSale: true), makeDressProduct(onSale: false)]),
         ])
     }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (ProductsViewModel, StubProductsLoader) {
+        let loader = StubProductsLoader()
+        let viewModel = ProductsViewModel(loader: loader)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(viewModel, file: file, line: line)
+        
+        return (viewModel, loader)
+    }
 }
 
-// MARK: - Helpers
-
-struct AnyError: Error {}
-
-private func makeSUT() -> (ProductsViewModel, StubProductsLoader) {
-    let loader = StubProductsLoader()
-    let viewModel = ProductsViewModel(loader: loader)
-    return (viewModel, loader)
-}
+// MARK: - Mocks
 
 private class StubProductsLoader: ProductsLoader {
     
@@ -104,23 +110,4 @@ private class StubProductsLoader: ProductsLoader {
             continuation.resume(with: completion())
         })
     }
-}
-
-private func makeDressProduct(onSale: Bool = false) -> Product {
-    return Product(
-        name: "VESTIDO TRANSPASSE BOW",
-        image: URL(string: "https://d3l7rqep7l31az.cloudfront.net/images/products/20002605_615_catalog_1.jpg?1460136912")!,
-        onSale: onSale,
-        regularPrice: "R$ 199,90",
-        actualPrice: "R$ 199,90",
-        discountPercentage: "",
-        installments: "3x R$ 66,63",
-        sizes: [
-            Product.Size(available: false, size: "PP", sku: "5807_343_0_PP"),
-            Product.Size(available: true, size: "P", sku: "5807_343_0_P"),
-            Product.Size(available: true, size: "M", sku: "5807_343_0_M"),
-            Product.Size(available: true, size: "G", sku: "5807_343_0_G"),
-            Product.Size(available: false, size: "GG", sku: "5807_343_0_GG"),
-        ]
-    )
 }

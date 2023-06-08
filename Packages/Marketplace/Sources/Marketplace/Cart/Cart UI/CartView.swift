@@ -36,6 +36,15 @@ public struct CartView: View {
             }
             .navigationTitle("Carrinho")
             .navigationBarHidden(false)
+            .toolbar {
+                if !viewModel.items.isEmpty {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Limpar") {
+                            viewModel.clear()
+                        }
+                    }
+                }
+            }
         }
     }
 }

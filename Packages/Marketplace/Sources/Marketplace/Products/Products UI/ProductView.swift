@@ -18,19 +18,21 @@ struct ProductView: View {
     }
     
     var body: some View {
-        VStack() {
+        VStack(spacing: 8) {
             ZStack(alignment: .bottomTrailing) {
-                ProductImageView(url: product.image).frame(height: 300)
+                ProductImageView(url: product.image)
+                    .frame(height: 350)
                 
                 if product.onSale {
                     Text("(\(product.discountPercentage) OFF)")
                         .foregroundColor(.white)
                         .fontWeight(.bold)
-                        .padding(8.0)
+                        .padding(16.0)
                         .multilineTextAlignment(.center)
                         .background(RoundedRectangle(cornerRadius: 8).fill(.black))
                 }
             }
+            .frame(height: 350)
             Divider()
             VStack {
                 Text(product.name)
@@ -41,14 +43,18 @@ struct ProductView: View {
                     Text(product.installments)
                         .foregroundColor(.gray)
                 }
-                HStack {
-                    Text(product.regularPrice)
-                        .foregroundColor(.gray)
-                        .strikethrough(true, color: .gray)
-                    Text("(\(product.discountPercentage) OFF)")
-                        .foregroundColor(.red)
-                        .fontWeight(.semibold)
-                }.opacity(product.onSale ? 1 : 0)
+                
+                if product.onSale {
+                    HStack {
+                        Text(product.regularPrice)
+                            .foregroundColor(.gray)
+                            .strikethrough(true, color: .gray)
+                        Text("(\(product.discountPercentage) OFF)")
+                            .foregroundColor(.red)
+                            .fontWeight(.semibold)
+                    }
+                }
+                
                 HStack {
                     ForEach(product.availableSizes, id: \.sku) { size in
                         SizeView(size: size) { size in
@@ -56,9 +62,7 @@ struct ProductView: View {
                         }
                     }
                 }
-            }.padding()
+            }
         }
-        .background(.white)
-        .cornerRadius(12)
     }
 }

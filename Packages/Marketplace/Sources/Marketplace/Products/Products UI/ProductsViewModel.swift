@@ -7,10 +7,6 @@
 
 import Foundation
 
-public protocol ProductsLoader {
-    func load() async throws -> [Product]
-}
-
 public class ProductsViewModel: ObservableObject {
     
     @Published private(set) var state = State.initial
