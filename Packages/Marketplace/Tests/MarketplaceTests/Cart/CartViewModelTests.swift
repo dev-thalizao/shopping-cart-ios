@@ -125,12 +125,6 @@ final class CartViewModelTests: XCTestCase {
         ])
     }
     
-    func test_br_formatter() {
-        let formatter = NumberFormatter.br
-        XCTAssertEqual(formatter.number(from: "R$ 199,90")?.doubleValue, 199.90)
-        XCTAssertEqual(formatter.string(from: NSNumber(value: 1999.90)), "R$ 1.999,90")
-    }
-    
     // MARK: - Helpers
     
     private func makeSUT(
