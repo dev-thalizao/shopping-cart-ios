@@ -10,13 +10,21 @@ import SwiftUI
 public struct ProductsView: View {
     
     @ObservedObject private var viewModel: ProductsViewModel
+    private let onSelection: (Product) -> ProductDetailView
+    private let onSizeSelected: (Product, Product.Size) -> Void
     
     var columns: [GridItem] = [
         GridItem(.flexible()),
     ]
     
-    public init(viewModel: ObservedObject<ProductsViewModel>) {
+    public init(
+        viewModel: ObservedObject<ProductsViewModel>,
+        onSelection: @escaping (Product) -> ProductDetailView,
+        onSizeSelected: @escaping (Product, Product.Size) -> Void
+    ) {
         self._viewModel = viewModel
+        self.onSelection = onSelection
+        self.onSizeSelected = onSizeSelected
     }
     
     public var body: some View {
@@ -33,7 +41,10 @@ public struct ProductsView: View {
                     ScrollView {
                         LazyVGrid(columns: columns) {
                             ForEach(products, id: \.name) { product in
-                                ProductView(product: product)
+//                                NavigationLink(destination: onSelection(product)) {
+//                                    ProductView(product: product)
+//                                }
+                                ProductView(product: product, onSizeSelected: onSizeSelected)
                             }
                         }
                         .padding(16)
@@ -69,9 +80,11 @@ public struct ProductsView: View {
 struct ProductView: View {
     
     private let product: Product
+    private let onSizeSelected: (Product, Product.Size) -> Void
     
-    internal init(product: Product) {
+    internal init(product: Product, onSizeSelected: @escaping (Product, Product.Size) -> Void) {
         self.product = product
+        self.onSizeSelected = onSizeSelected
     }
     
     var body: some View {
@@ -125,14 +138,10 @@ struct ProductView: View {
                         .fontWeight(.semibold)
                 }.opacity(product.onSale ? 1 : 0)
                 HStack {
-                    ForEach(product.availableSizes, id: \.self) { size in
-                        Circle()
-                            .stroke(.black)
-                            .frame(width: 40, height: 40)
-                            .overlay {
-                                Text(size)
-                            }
-                        
+                    ForEach(product.availableSizes, id: \.sku) { size in
+                        SizeView(size: size) { size in
+                            onSizeSelected(product, size)
+                        }
                     }
                 }
             }.padding()
@@ -142,17 +151,14 @@ struct ProductView: View {
     }
 }
 
-extension Product {
-    var availableSizes: [String] {
-        return sizes.filter({ $0.available }).map(\.size)
-    }
-}
-
 #if DEBUG
 
 struct ProductsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductsView(viewModel: .init(initialValue: .init(loader: StubProductsLoader())))
+        ProductsView(
+            viewModel: .init(initialValue: .init(loader: StubProductsLoader())),
+            onSelection: { ProductDetailView(product: $0) }, onSizeSelected: { _, _ in}
+        )
     }
 }
 

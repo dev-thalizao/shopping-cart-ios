@@ -16,11 +16,15 @@ public struct Product: Equatable {
     let discountPercentage: String
     let installments: String
     let sizes: [Product.Size]
+    
+    public var availableSizes: [Size] {
+        return sizes.filter({ $0.available })
+    }
 }
 
 extension Product {
     
-    struct Size: Equatable {
+    public struct Size: Equatable {
         let available: Bool
         let size: String
         let sku: String
