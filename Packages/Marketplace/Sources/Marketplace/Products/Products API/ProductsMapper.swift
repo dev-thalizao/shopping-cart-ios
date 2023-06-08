@@ -27,10 +27,10 @@ public final class ProductsMapper {
             throw Error.invalidData
         }
         
-        return root.products.map { remoteProduct in
+        return root.products.compactMap { remoteProduct in
             return Product(
                 name: remoteProduct.name,
-                image: remoteProduct.image,
+                image: URL(string: remoteProduct.image) ?? .fallback(),
                 onSale: remoteProduct.onSale,
                 regularPrice: remoteProduct.regularPrice,
                 actualPrice: remoteProduct.actualPrice,
@@ -52,7 +52,7 @@ extension ProductsMapper {
 
     private struct RemoteProduct: Decodable {
         let name: String
-        let image: URL
+        let image: String
         let onSale: Bool
         let regularPrice: String
         let actualPrice: String
@@ -65,5 +65,13 @@ extension ProductsMapper {
         let available: Bool
         let size: String
         let sku: String
+    }
+}
+
+private extension URL {
+    
+    // Just a valid url without existing host
+    static func fallback() -> URL {
+        return URL(string: "https://any-url.com")!
     }
 }

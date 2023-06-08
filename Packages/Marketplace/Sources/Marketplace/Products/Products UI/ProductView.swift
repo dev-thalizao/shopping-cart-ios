@@ -27,7 +27,7 @@ struct ProductView: View {
                     Text("(\(product.discountPercentage) OFF)")
                         .foregroundColor(.white)
                         .fontWeight(.bold)
-                        .padding(8.0)
+                        .padding(16.0)
                         .multilineTextAlignment(.center)
                         .background(RoundedRectangle(cornerRadius: 8).fill(.black))
                 }
