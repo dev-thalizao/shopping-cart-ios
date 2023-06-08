@@ -9,13 +9,17 @@ import Foundation
 
 struct CartItemViewModel {
     
-    let product: CartProduct
+    let cartProduct: CartProduct
     let quantity: UInt
     let increase: () -> Void
     let decrease: () -> Void
     
+    var sku: String {
+        cartProduct.size.sku
+    }
+    
     var price: Double {
-        product.price * Double(quantity)
+        cartProduct.price * Double(quantity)
     }
     
     var formattedPrice: String {
@@ -26,6 +30,6 @@ struct CartItemViewModel {
 extension CartItemViewModel: Equatable {
     
     static func == (lhs: CartItemViewModel, rhs: CartItemViewModel) -> Bool {
-        return lhs.product == rhs.product && lhs.quantity == rhs.quantity
+        return lhs.cartProduct == rhs.cartProduct && lhs.quantity == rhs.quantity
     }
 }

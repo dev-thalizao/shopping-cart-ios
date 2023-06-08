@@ -9,10 +9,10 @@ import SwiftUI
 
 struct SizeView: View {
     
-    private let size: Product.Size
-    private let onSelection: (Product.Size) -> Void
+    private let size: Product.AvailableSize
+    private let onSelection: (Product.AvailableSize) -> Void
     
-    init(size: Product.Size, onSelection: @escaping (Product.Size) -> Void) {
+    init(size: Product.AvailableSize, onSelection: @escaping (Product.AvailableSize) -> Void) {
         self.size = size
         self.onSelection = onSelection
     }
@@ -35,8 +35,12 @@ struct SizeView: View {
     }
 }
 
+#if DEBUG
+
 struct SizeView_Previews: PreviewProvider {
     static var previews: some View {
-        SizeView(size: .init(available: true, size: "GG", sku: "gg"), onSelection: { print($0) })
+        SizeView(size: .init(size: "GG", sku: "gg"), onSelection: { print($0) })
     }
 }
+
+#endif

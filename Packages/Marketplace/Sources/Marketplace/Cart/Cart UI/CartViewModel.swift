@@ -15,12 +15,20 @@ public final class CartViewModel: ObservableObject {
     
     private let engine = Cart<CartProduct>()
     
+    public var amountOfProducts: Int {
+        return Int(engine.totalItems)
+    }
+    
+    public var formattedTotalPrice: String {
+        return NumberFormatter.br.string(from: NSNumber(value: totalPrice)) ?? ""
+    }
+    
     public init() {
         engine.onCartChange = { [weak self] cart in
             self?.totalPrice = cart.totalPrice
             self?.items = cart.items.map({ item in
                 .init(
-                    product: item.product,
+                    cartProduct: item.product,
                     quantity: item.quantity,
                     increase: { cart.add(item.product) },
                     decrease: { cart.remove(item.product) }

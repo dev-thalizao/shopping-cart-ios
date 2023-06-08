@@ -37,7 +37,7 @@ final class CartViewModelTests: XCTestCase {
         
         XCTAssertEqual(itemsSpy.values, [[
             CartItemViewModel(
-                product: .init(product: makeDressProduct(), size: makeGAvailableSize()),
+                cartProduct: .init(product: makeDressProduct(), size: makeGAvailableSize()),
                 quantity: 1,
                 increase: {},
                 decrease: {}
@@ -122,7 +122,7 @@ private func makeCartItemViewModel(
     quantity: UInt = 1
 ) -> CartItemViewModel {
     return CartItemViewModel(
-        product: .init(product: makeDressProduct(), size: makeGAvailableSize()),
+        cartProduct: .init(product: makeDressProduct(), size: makeGAvailableSize()),
         quantity: quantity,
         increase: {},
         decrease: {}

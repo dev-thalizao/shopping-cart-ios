@@ -17,11 +17,7 @@ public struct Product: Equatable {
     let installments: String
     let sizes: [Product.Size]
     
-    public var availableSizes: [Size] {
-        return sizes.filter({ $0.available })
-    }
-    
-    public var availableSizess: [AvailableSize] {
+    public var availableSizes: [AvailableSize] {
         return sizes.filter({ $0.available }).map {
             AvailableSize(size: $0.size, sku: $0.sku)
         }

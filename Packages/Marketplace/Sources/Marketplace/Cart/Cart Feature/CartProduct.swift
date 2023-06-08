@@ -9,7 +9,7 @@ import Foundation
 import CartEngine
 
 struct CartProduct: Equatable, CartEngine.CartProduct {
-    
+
     let product: Product
     let size: Product.AvailableSize
     

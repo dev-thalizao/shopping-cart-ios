@@ -14,6 +14,7 @@ extension NumberFormatter {
         formatter.numberStyle = .currency
         formatter.currencyCode = "BRL"
         formatter.positivePrefix = "R$ "
+        formatter.maximumFractionDigits = 2
         return formatter
     }
 }

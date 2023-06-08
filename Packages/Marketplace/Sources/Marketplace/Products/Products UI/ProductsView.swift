@@ -10,8 +10,7 @@ import SwiftUI
 public struct ProductsView: View {
     
     @ObservedObject private var viewModel: ProductsViewModel
-    private let onSelection: (Product) -> ProductDetailView
-    private let onSizeSelected: (Product, Product.Size) -> Void
+    private let select: (Product, Product.AvailableSize) -> Void
     
     var columns: [GridItem] = [
         GridItem(.flexible()),
@@ -19,12 +18,10 @@ public struct ProductsView: View {
     
     public init(
         viewModel: ObservedObject<ProductsViewModel>,
-        onSelection: @escaping (Product) -> ProductDetailView,
-        onSizeSelected: @escaping (Product, Product.Size) -> Void
+        onSelection: @escaping (Product, Product.AvailableSize) -> Void
     ) {
         self._viewModel = viewModel
-        self.onSelection = onSelection
-        self.onSizeSelected = onSizeSelected
+        self.select = onSelection
     }
     
     public var body: some View {
@@ -35,20 +32,17 @@ public struct ProductsView: View {
                     Color.gray.opacity(0.1).task { await viewModel.loadProducts() }
                 case .failure:
                     Text("Houve um erro, tente novamente mais tarde.")
+                        .multilineTextAlignment(.center)
                 case .loading:
                     ProgressView()
                 case let .success(products):
                     ScrollView {
                         LazyVGrid(columns: columns) {
                             ForEach(products, id: \.name) { product in
-//                                NavigationLink(destination: onSelection(product)) {
-//                                    ProductView(product: product)
-//                                }
-                                ProductView(product: product, onSizeSelected: onSizeSelected)
+                                ProductView(product: product, onSizeSelected: select)
                             }
                         }
                         .padding(16)
-
                     }
                 }
             }
@@ -77,79 +71,7 @@ public struct ProductsView: View {
     }
 }
 
-struct ProductView: View {
-    
-    private let product: Product
-    private let onSizeSelected: (Product, Product.Size) -> Void
-    
-    internal init(product: Product, onSizeSelected: @escaping (Product, Product.Size) -> Void) {
-        self.product = product
-        self.onSizeSelected = onSizeSelected
-    }
-    
-    var body: some View {
-        VStack() {
-            ZStack(alignment: .bottomTrailing) {
-                AsyncImage(url: product.image, transaction: Transaction(animation: .easeInOut(duration: 0.35))) { phase in
-                    switch phase {
-                    case .empty:
-                        ProgressView()
-                        
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .scaledToFit()
-                        
-                    case .failure(_):
-                        Image(systemName: "exclamationmark.icloud")
-                            .resizable()
-                            .scaledToFit()
-                        
-                    @unknown default:
-                        ProgressView()
-                    }
-                }.frame(height: 300)
-                
-                if product.onSale {
-                    Text("(\(product.discountPercentage) OFF)")
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
-                        .padding(8.0)
-                        .multilineTextAlignment(.center)
-                        .background(RoundedRectangle(cornerRadius: 8).fill(.black))
-                }
-            }
-            Divider()
-            VStack {
-                Text(product.name)
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                HStack {
-                    Text(product.actualPrice)
-                    Text(product.installments)
-                        .foregroundColor(.gray)
-                }
-                HStack {
-                    Text(product.regularPrice)
-                        .foregroundColor(.gray)
-                        .strikethrough(true, color: .gray)
-                    Text("(\(product.discountPercentage) OFF)")
-                        .foregroundColor(.red)
-                        .fontWeight(.semibold)
-                }.opacity(product.onSale ? 1 : 0)
-                HStack {
-                    ForEach(product.availableSizes, id: \.sku) { size in
-                        SizeView(size: size) { size in
-                            onSizeSelected(product, size)
-                        }
-                    }
-                }
-            }.padding()
-        }
-        .background(.white)
-        .cornerRadius(12)
-    }
-}
+
 
 #if DEBUG
 
@@ -157,7 +79,7 @@ struct ProductsView_Previews: PreviewProvider {
     static var previews: some View {
         ProductsView(
             viewModel: .init(initialValue: .init(loader: StubProductsLoader())),
-            onSelection: { ProductDetailView(product: $0) }, onSizeSelected: { _, _ in}
+            onSelection: { _, _ in }
         )
     }
 }
