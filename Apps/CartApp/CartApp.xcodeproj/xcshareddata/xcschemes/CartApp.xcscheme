@@ -51,13 +51,23 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CartEngineTests"
                BuildableName = "CartEngineTests"
                BlueprintName = "CartEngineTests"
                ReferencedContainer = "container:../../Packages/CartEngine">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "MarketplaceTests"
+               BuildableName = "MarketplaceTests"
+               BlueprintName = "MarketplaceTests"
+               ReferencedContainer = "container:../../Packages/Marketplace">
             </BuildableReference>
          </TestableReference>
       </Testables>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		122F13BC2A2F928E00062BA4 /* Marketplace in Frameworks */ = {isa = PBXBuildFile; productRef = 122F13BB2A2F928E00062BA4 /* Marketplace */; };
 		129EDB512A2CF910002913B2 /* CartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129EDB502A2CF910002913B2 /* CartApp.swift */; };
 		129EDB532A2CF910002913B2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129EDB522A2CF910002913B2 /* ContentView.swift */; };
 		129EDB552A2CF912002913B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 129EDB542A2CF912002913B2 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		129EDB672A2CF912002913B2 /* CartAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CartAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		129EDB6B2A2CF913002913B2 /* CartAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartAppUITests.swift; sourceTree = "<group>"; };
 		129EDB6D2A2CF913002913B2 /* CartAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		12BD750E2A322FC70025454B /* CartEngine */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CartEngine; path = ../../Packages/CartEngine; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				122F13BC2A2F928E00062BA4 /* Marketplace in Frameworks */,
 				129EDB7C2A2CF937002913B2 /* CartEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +79,7 @@
 		129EDB442A2CF910002913B2 = {
 			isa = PBXGroup;
 			children = (
+				12BD750D2A322FC70025454B /* Packages */,
 				129EDB4F2A2CF910002913B2 /* CartApp */,
 				129EDB602A2CF912002913B2 /* CartAppTests */,
 				129EDB6A2A2CF913002913B2 /* CartAppUITests */,
@@ -137,6 +141,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		12BD750D2A322FC70025454B /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				12BD750E2A322FC70025454B /* CartEngine */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,6 +167,7 @@
 			name = CartApp;
 			packageProductDependencies = (
 				129EDB7B2A2CF937002913B2 /* CartEngine */,
+				122F13BB2A2F928E00062BA4 /* Marketplace */,
 			);
 			productName = CartApp;
 			productReference = 129EDB4D2A2CF910002913B2 /* CartApp.app */;
@@ -592,6 +605,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		122F13BB2A2F928E00062BA4 /* Marketplace */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Marketplace;
+		};
 		129EDB7B2A2CF937002913B2 /* CartEngine */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CartEngine;
