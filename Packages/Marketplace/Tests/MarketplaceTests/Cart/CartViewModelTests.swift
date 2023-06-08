@@ -118,7 +118,7 @@ final class CartViewModelTests: XCTestCase {
 }
 
 private func makeCartItemViewModel(
-    product:ProductWithSize = .init(product: makeDressProduct(), size: makeGAvailableSize()),
+    product: CartProduct = .init(product: makeDressProduct(), size: makeGAvailableSize()),
     quantity: UInt = 1
 ) -> CartItemViewModel {
     return CartItemViewModel(
@@ -150,13 +150,4 @@ private func makeDressProduct() -> Product {
             Product.Size(available: false, size: "GG", sku: "5807_343_0_GG"),
         ]
     )
-}
-
-extension XCTestCase {
-    
-    func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString = #filePath, line: UInt = #line) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
-        }
-    }
 }
