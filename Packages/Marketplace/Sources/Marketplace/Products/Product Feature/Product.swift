@@ -20,12 +20,24 @@ public struct Product: Equatable {
     public var availableSizes: [Size] {
         return sizes.filter({ $0.available })
     }
+    
+    public var availableSizess: [AvailableSize] {
+        return sizes.filter({ $0.available }).map {
+            AvailableSize(size: $0.size, sku: $0.sku)
+        }
+    }
 }
 
 extension Product {
     
     public struct Size: Equatable {
         let available: Bool
+        let size: String
+        let sku: String
+    }
+    
+    /// Special type that use the type system to enforces the availability on a size
+    public struct AvailableSize: Equatable {
         let size: String
         let sku: String
     }
