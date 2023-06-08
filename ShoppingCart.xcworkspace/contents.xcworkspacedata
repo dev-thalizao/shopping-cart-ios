@@ -2,12 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Packages/NetworkEngine">
+   </FileRef>
+   <FileRef
       location = "group:Packages/Marketplace">
    </FileRef>
    <FileRef
-      location = "group:Apps/CartApp/CartApp.xcodeproj">
+      location = "group:Packages/CartEngine">
    </FileRef>
    <FileRef
-      location = "group:Packages/CartEngine">
+      location = "group:Apps/CartApp/CartApp.xcodeproj">
    </FileRef>
 </Workspace>
