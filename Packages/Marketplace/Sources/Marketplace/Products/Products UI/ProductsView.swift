@@ -33,7 +33,7 @@ public struct ProductsView: View {
                     ProgressView()
                 case let .success(products):
                     List {
-                        ForEach(products, id: \.name) { product in
+                        ForEach(Array(zip(products.indices, products)), id: \.0) { _, product in
                             Section {
                                 ProductView(product: product, onSizeSelected: select)
                             }

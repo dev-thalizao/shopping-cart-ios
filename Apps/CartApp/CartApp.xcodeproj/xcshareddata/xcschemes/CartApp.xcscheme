@@ -26,10 +26,11 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
-            skipped = "YES"
+            skipped = "NO"
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -40,7 +41,7 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "YES"
+            skipped = "NO"
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -48,36 +49,6 @@
                BuildableName = "CartAppUITests.xctest"
                BlueprintName = "CartAppUITests"
                ReferencedContainer = "container:CartApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CartEngineTests"
-               BuildableName = "CartEngineTests"
-               BlueprintName = "CartEngineTests"
-               ReferencedContainer = "container:../../Packages/CartEngine">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "MarketplaceTests"
-               BuildableName = "MarketplaceTests"
-               BlueprintName = "MarketplaceTests"
-               ReferencedContainer = "container:../../Packages/Marketplace">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "NetworkEngineTests"
-               BuildableName = "NetworkEngineTests"
-               BlueprintName = "NetworkEngineTests"
-               ReferencedContainer = "container:../../Packages/NetworkEngine">
             </BuildableReference>
          </TestableReference>
       </Testables>
