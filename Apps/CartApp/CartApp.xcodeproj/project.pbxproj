@@ -46,6 +46,7 @@
 		129EDB672A2CF912002913B2 /* CartAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CartAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		129EDB6B2A2CF913002913B2 /* CartAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartAppUITests.swift; sourceTree = "<group>"; };
 		129EDB6D2A2CF913002913B2 /* CartAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		12BD750E2A322FC70025454B /* CartEngine */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CartEngine; path = ../../Packages/CartEngine; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +79,7 @@
 		129EDB442A2CF910002913B2 = {
 			isa = PBXGroup;
 			children = (
+				12BD750D2A322FC70025454B /* Packages */,
 				129EDB4F2A2CF910002913B2 /* CartApp */,
 				129EDB602A2CF912002913B2 /* CartAppTests */,
 				129EDB6A2A2CF913002913B2 /* CartAppUITests */,
@@ -137,6 +139,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		12BD750D2A322FC70025454B /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				12BD750E2A322FC70025454B /* CartEngine */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
