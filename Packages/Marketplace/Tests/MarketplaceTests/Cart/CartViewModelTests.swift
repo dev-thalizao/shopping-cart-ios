@@ -97,6 +97,34 @@ final class CartViewModelTests: XCTestCase {
         ])
     }
     
+    func test_clear_removeAllItems() throws {
+        let sut = makeSUT()
+        let itemsSpy = TestObserver(sut.$items)
+        
+        sut.select(makeDressProduct(), with: makeGAvailableSize())
+        
+        XCTAssertEqual(itemsSpy.values, [[
+            makeCartItemViewModel(quantity: 1)
+        ]])
+        
+        let cartItemViewModel = try XCTUnwrap(itemsSpy.values.first?.first)
+        
+        cartItemViewModel.increase()
+        
+        XCTAssertEqual(itemsSpy.values, [
+            [makeCartItemViewModel(quantity: 1)],
+            [makeCartItemViewModel(quantity: 2)]
+        ])
+        
+        sut.clear()
+        
+        XCTAssertEqual(itemsSpy.values, [
+            [makeCartItemViewModel(quantity: 1)],
+            [makeCartItemViewModel(quantity: 2)],
+            []
+        ])
+    }
+    
     func test_br_formatter() {
         let formatter = NumberFormatter.br
         XCTAssertEqual(formatter.number(from: "R$ 199,90")?.doubleValue, 199.90)

@@ -12,10 +12,6 @@ public struct ProductsView: View {
     @ObservedObject private var viewModel: ProductsViewModel
     private let select: (Product, Product.AvailableSize) -> Void
     
-    var columns: [GridItem] = [
-        GridItem(.flexible()),
-    ]
-    
     public init(
         viewModel: ObservedObject<ProductsViewModel>,
         onSelection: @escaping (Product, Product.AvailableSize) -> Void
@@ -29,24 +25,29 @@ public struct ProductsView: View {
             ZStack {
                 switch viewModel.state {
                 case .initial:
-                    Color.gray.opacity(0.1).task { await viewModel.loadProducts() }
+                    Color.gray.opacity(0.1)
                 case .failure:
                     Text("Houve um erro, tente novamente mais tarde.")
                         .multilineTextAlignment(.center)
                 case .loading:
                     ProgressView()
                 case let .success(products):
-                    ScrollView {
-                        LazyVGrid(columns: columns) {
-                            ForEach(products, id: \.name) { product in
+                    List {
+                        ForEach(products, id: \.name) { product in
+                            Section {
                                 ProductView(product: product, onSizeSelected: select)
                             }
                         }
-                        .padding(16)
+                    }
+                    .buttonStyle(BorderlessButtonStyle())
+                    .listStyle(.insetGrouped)
+                    .refreshable {
+                        Task {
+                            await viewModel.loadProducts()
+                        }
                     }
                 }
             }
-            .background(Color.gray.opacity(0.1))
             .navigationTitle("Produtos")
             .navigationBarHidden(false)
             .toolbar {
@@ -65,9 +66,12 @@ public struct ProductsView: View {
                         }
                     }
                 }
-                
             }
-        }.task { await viewModel.loadProducts() }
+        }.onViewDidLoad {
+            Task {
+                await viewModel.loadProducts()
+            }
+        }
     }
 }
 

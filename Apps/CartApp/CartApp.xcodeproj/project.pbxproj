@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		122F13BC2A2F928E00062BA4 /* Marketplace in Frameworks */ = {isa = PBXBuildFile; productRef = 122F13BB2A2F928E00062BA4 /* Marketplace */; };
 		127295D12A3274E900FF2C06 /* NetworkEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 127295D02A3274E900FF2C06 /* NetworkEngine */; };
+		127295D42A32780C00FF2C06 /* StubProductsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127295D32A32780C00FF2C06 /* StubProductsLoader.swift */; };
+		127295D62A32785700FF2C06 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127295D52A32785700FF2C06 /* Environment.swift */; };
 		129EDB512A2CF910002913B2 /* CartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129EDB502A2CF910002913B2 /* CartApp.swift */; };
 		129EDB532A2CF910002913B2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129EDB522A2CF910002913B2 /* ContentView.swift */; };
 		129EDB552A2CF912002913B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 129EDB542A2CF912002913B2 /* Assets.xcassets */; };
@@ -37,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		127295D32A32780C00FF2C06 /* StubProductsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubProductsLoader.swift; sourceTree = "<group>"; };
+		127295D52A32785700FF2C06 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		127295D72A3279BF00FF2C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		129EDB4D2A2CF910002913B2 /* CartApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CartApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		129EDB502A2CF910002913B2 /* CartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartApp.swift; sourceTree = "<group>"; };
 		129EDB522A2CF910002913B2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -78,6 +83,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		127295D22A3277DB00FF2C06 /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				127295D32A32780C00FF2C06 /* StubProductsLoader.swift */,
+				127295D52A32785700FF2C06 /* Environment.swift */,
+			);
+			path = Infra;
+			sourceTree = "<group>";
+		};
 		129EDB442A2CF910002913B2 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +117,8 @@
 		129EDB4F2A2CF910002913B2 /* CartApp */ = {
 			isa = PBXGroup;
 			children = (
+				127295D72A3279BF00FF2C06 /* Info.plist */,
+				127295D22A3277DB00FF2C06 /* Infra */,
 				129EDB502A2CF910002913B2 /* CartApp.swift */,
 				129EDB522A2CF910002913B2 /* ContentView.swift */,
 				129EDB542A2CF912002913B2 /* Assets.xcassets */,
@@ -286,6 +302,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				127295D42A32780C00FF2C06 /* StubProductsLoader.swift in Sources */,
+				127295D62A32785700FF2C06 /* Environment.swift in Sources */,
 				129EDB532A2CF910002913B2 /* ContentView.swift in Sources */,
 				129EDB512A2CF910002913B2 /* CartApp.swift in Sources */,
 			);
@@ -448,6 +466,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CartApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CartApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -476,6 +495,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CartApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CartApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
