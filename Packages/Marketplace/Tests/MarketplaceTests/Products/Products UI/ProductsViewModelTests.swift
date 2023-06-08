@@ -11,7 +11,7 @@ import Combine
 
 final class ProductsViewModelTests: XCTestCase {
     
-    func test_init_doesNotTriggerAnyRequest() throws {
+    func test_init_doesNotTriggerAnyChanges() throws {
         let (sut, _) = makeSUT()
         XCTAssertEqual(sut.state, .initial)
         XCTAssertEqual(sut.filter, .all)
