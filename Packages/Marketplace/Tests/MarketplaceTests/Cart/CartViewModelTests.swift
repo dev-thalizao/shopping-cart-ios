@@ -116,38 +116,3 @@ final class CartViewModelTests: XCTestCase {
         XCTAssertEqual(formatter.string(from: NSNumber(value: 1999.90)), "R$ 1.999,90")
     }
 }
-
-private func makeCartItemViewModel(
-    product: CartProduct = .init(product: makeDressProduct(), size: makeGAvailableSize()),
-    quantity: UInt = 1
-) -> CartItemViewModel {
-    return CartItemViewModel(
-        cartProduct: .init(product: makeDressProduct(), size: makeGAvailableSize()),
-        quantity: quantity,
-        increase: {},
-        decrease: {}
-    )
-}
-
-private func makeGAvailableSize() -> Product.AvailableSize {
-    return Product.AvailableSize(size: "G", sku: "5807_343_0_G")
-}
-
-private func makeDressProduct() -> Product {
-    return Product(
-        name: "VESTIDO TRANSPASSE BOW",
-        image: URL(string: "https://d3l7rqep7l31az.cloudfront.net/images/products/20002605_615_catalog_1.jpg?1460136912")!,
-        onSale: false,
-        regularPrice: "R$ 199,90",
-        actualPrice: "R$ 199,90",
-        discountPercentage: "",
-        installments: "3x R$ 66,63",
-        sizes: [
-            Product.Size(available: false, size: "PP", sku: "5807_343_0_PP"),
-            Product.Size(available: true, size: "P", sku: "5807_343_0_P"),
-            Product.Size(available: true, size: "M", sku: "5807_343_0_M"),
-            Product.Size(available: true, size: "G", sku: "5807_343_0_G"),
-            Product.Size(available: false, size: "GG", sku: "5807_343_0_GG"),
-        ]
-    )
-}
