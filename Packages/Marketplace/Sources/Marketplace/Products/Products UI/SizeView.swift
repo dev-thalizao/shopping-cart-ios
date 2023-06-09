@@ -24,7 +24,6 @@ struct SizeView: View {
             Text(size.size)
                 .fontWeight(.bold)
                 .foregroundColor(.black)
-//                .padding()
                 .frame(width: 40, height: 40)
                 .background(
                     Circle()

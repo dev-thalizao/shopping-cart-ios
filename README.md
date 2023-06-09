@@ -12,7 +12,9 @@ The components are built focus on the reusability by multiple projects. The modu
 - [Marketplace](./Packages/Marketplace/Sources): The product and the cart feature, can be run in isolation of the main project.
 - [CartApp](./Apps/CartApp): The main module, that create features and inject the dependencies.
 
-https://user-images.githubusercontent.com/6041775/119925214-5d145c80-bf4b-11eb-9d7d-bf74593a998a.mov
+| Demo |
+| ---- |
+| <video src="https://github.com/dev-thalizao/shopping-cart-ios/assets/6041775/c82d0bd3-9bb6-4a8b-a111-ca62a350c2fb"> |
 
 ## Getting Started
 

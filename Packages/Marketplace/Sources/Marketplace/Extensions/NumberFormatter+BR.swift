@@ -12,6 +12,7 @@ extension NumberFormatter {
     static var br: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
+        formatter.locale = Locale(languageCode: .portuguese, languageRegion: .brazil)
         formatter.currencyCode = "BRL"
         formatter.positivePrefix = "R$ "
         formatter.maximumFractionDigits = 2
