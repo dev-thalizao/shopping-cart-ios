@@ -14,7 +14,7 @@ The components are built focus on the reusability by multiple projects. The modu
 
 | Demo |
 | ---- |
-| <video src="https://github.com/dev-thalizao/shopping-cart-ios/assets/6041775/c82d0bd3-9bb6-4a8b-a111-ca62a350c2fb"> |
+| <video src="https://github.com/dev-thalizao/shopping-cart-ios/assets/6041775/16906d91-c0d6-4bed-9148-aaea4a05970f"> |
 
 ## Getting Started
 
